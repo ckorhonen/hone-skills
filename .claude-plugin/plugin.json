@@ -1,0 +1,10 @@
+{
+  "name": "hone-skills",
+  "version": "0.1.0",
+  "description": "8 Claude Code skills that run on a cadence to fight code entropy — method brevity, naming clarity, duplication detection, broken windows. See cdd.dev/skills/hone.",
+  "author": {
+    "name": "Chris Korhonen"
+  },
+  "repository": "https://github.com/ckorhonen/hone-skills",
+  "keywords": ["claude-code","codex","agent-skills","code-quality","linting","cdd"]
+}
