@@ -1,0 +1,103 @@
+{
+  "schemaVersion": 1,
+  "skill": "hone:test-naming-audit",
+  "cases": [
+    {
+      "id": "test-naming-audit-happy",
+      "title": "Scan multi-language repo for poorly named tests",
+      "tags": ["happy-path"],
+      "user_request": "Run a test naming audit on this repository in standard mode. Find test names that don't read as sentences describing behavior.",
+      "context": {
+        "repo_path": ".",
+        "notes": [
+          "Repository contains tests in TypeScript (Jest), Python (pytest), and Go.",
+          "Some tests have names like test1, testParse, and test_it.",
+          "Other tests have good sentence-style names that should not be flagged.",
+          "There are describe/context blocks that should not be treated as leaf tests."
+        ],
+        "available_artifacts": [
+          "Full repository source tree with test files"
+        ]
+      },
+      "artifact_requirements": [
+        "Markdown report with findings table including test name, file:line, issue, severity, and suggested pattern",
+        "Summary with breakdown by issue type, severity, and hotspot files",
+        "Percentage of test names meeting the sentence-style standard"
+      ],
+      "shared_criteria": ["concrete-evidence", "actionable-output", "instruction-adherence", "reviewable-structure"],
+      "static_checks": [
+        "Findings table is present and contains at least one finding",
+        "Every file path in findings exists in the repository",
+        "No describe or context block name appears as a finding",
+        "Each finding includes a suggested naming pattern"
+      ],
+      "review_questions": [
+        "Are the flagged test names genuinely problematic, or are any of them acceptable by the language's conventions?",
+        "Are the suggested naming patterns specific to each test's context rather than generic advice?"
+      ]
+    },
+    {
+      "id": "test-naming-audit-strict",
+      "title": "Strict mode flags additional naming issues",
+      "tags": ["configuration"],
+      "user_request": "Run a test naming audit in strict mode. I want to catch not just obviously bad names, but also names that could be more descriptive.",
+      "context": {
+        "repo_path": ".",
+        "notes": [
+          "Repository has some tests with acceptable but non-ideal names like testParseInput or test_valid_user.",
+          "In standard mode these should pass, but strict mode should flag them for not including conditions and expectations.",
+          "Strict mode should produce more findings than standard mode."
+        ],
+        "available_artifacts": [
+          "Full repository source tree with test files"
+        ]
+      },
+      "artifact_requirements": [
+        "Markdown report using strict mode evaluation",
+        "Findings include names that pass standard mode but fail the sentence check",
+        "Low severity assigned to strict-mode-only findings"
+      ],
+      "shared_criteria": ["scope-discipline", "concrete-evidence", "instruction-adherence", "reviewable-structure"],
+      "static_checks": [
+        "Report indicates strict mode was used",
+        "At least one finding is categorized as a sentence-check failure",
+        "Strict-mode-only findings are assigned low severity"
+      ],
+      "review_questions": [
+        "Does the report produce more findings than a standard-mode run would?",
+        "Are strict-mode-only findings reasonably flagged, or do they feel like excessive nitpicking?"
+      ]
+    },
+    {
+      "id": "test-naming-audit-displayname",
+      "title": "Tests with DisplayName annotations evaluated by display name",
+      "tags": ["edge-case"],
+      "user_request": "Run a test naming audit on this repository. Some Java tests use @DisplayName annotations — make sure those are evaluated by the display name, not the method name.",
+      "context": {
+        "repo_path": ".",
+        "notes": [
+          "Repository contains Java tests with @Test and @DisplayName annotations.",
+          "Method names like testA() and testB() should not be flagged if their @DisplayName provides a sentence-style description.",
+          "Methods without @DisplayName that have cryptic names should still be flagged."
+        ],
+        "available_artifacts": [
+          "Full repository source tree with Java test files"
+        ]
+      },
+      "artifact_requirements": [
+        "Markdown report that evaluates @DisplayName content rather than method names when present",
+        "Methods with good DisplayName annotations are not flagged",
+        "Methods without DisplayName that have poor names are still flagged"
+      ],
+      "shared_criteria": ["concrete-evidence", "honest-unknowns", "instruction-adherence", "reviewable-structure"],
+      "static_checks": [
+        "No finding flags a method whose @DisplayName reads as a complete sentence",
+        "Findings do flag methods without @DisplayName that have cryptic names"
+      ],
+      "review_questions": [
+        "Does the agent correctly parse @DisplayName annotations and use their content for evaluation?",
+        "If a @DisplayName itself is poorly written (e.g., 'test A'), is it flagged based on the display name content?"
+      ]
+    }
+  ]
+}

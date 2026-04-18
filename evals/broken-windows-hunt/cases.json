@@ -1,0 +1,116 @@
+{
+  "schemaVersion": 1,
+  "skill": "hone:broken-windows-hunt",
+  "cases": [
+    {
+      "id": "broken-windows-hunt-happy",
+      "title": "Repo with clear examples of all entropy categories",
+      "tags": ["happy-path"],
+      "user_request": "Run a broken windows hunt on this repo. Check for stale TODOs, disabled tests, lint suppressions, commented-out code, dead imports, empty catch blocks, and deprecated API usage.",
+      "context": {
+        "repo_path": ".",
+        "notes": [
+          "The repo has TODO comments dating back over a year.",
+          "Several test files contain skipped tests.",
+          "There are eslint-disable and noqa comments scattered throughout.",
+          "A few files have large blocks of commented-out code.",
+          "Git history is available for blame lookups."
+        ],
+        "available_artifacts": [
+          "source files in src/",
+          "test files in tests/",
+          "git history with blame data"
+        ]
+      },
+      "artifact_requirements": [
+        "Markdown report with health summary, categorized findings, and quick wins list",
+        "Findings from at least 4 of the 7 entropy categories",
+        "Each finding includes file path, line number, code snippet, severity, and suggested fix",
+        "Stale TODO ages are derived from git blame"
+      ],
+      "shared_criteria": ["concrete-evidence", "actionable-output", "instruction-adherence", "reviewable-structure"],
+      "static_checks": [
+        "Report has a health summary section",
+        "Findings are grouped by category",
+        "A quick wins section is present with at most 5 items",
+        "TODO findings include age information"
+      ],
+      "review_questions": [
+        "Are stale TODO ages derived from git blame rather than fabricated?",
+        "Does the report cover multiple entropy categories or focus on just one?"
+      ]
+    },
+    {
+      "id": "broken-windows-hunt-clean",
+      "title": "Well-maintained repo with minimal entropy",
+      "tags": ["edge-case"],
+      "user_request": "Run the daily broken windows hunt. This repo is well-maintained so I expect a clean bill of health or very few findings.",
+      "context": {
+        "repo_path": ".",
+        "notes": [
+          "The team actively addresses TODOs and keeps tests enabled.",
+          "There may be a few intentional lint suppressions with documented reasons.",
+          "The codebase has good import hygiene.",
+          "License headers are present in most files."
+        ],
+        "available_artifacts": [
+          "source files in src/",
+          "test files in tests/",
+          "license headers in file preambles"
+        ]
+      },
+      "artifact_requirements": [
+        "Report honestly reflects the low entropy level",
+        "Intentional lint suppressions with reasons are tagged low severity or excluded",
+        "License headers are not flagged as commented-out code",
+        "No finding inflation to appear thorough"
+      ],
+      "shared_criteria": ["concrete-evidence", "honest-unknowns", "scope-discipline", "actionable-output"],
+      "static_checks": [
+        "License header lines are not in the findings",
+        "Report summary acknowledges low entropy",
+        "Intentional suppressions are distinguished from lazy ones"
+      ],
+      "review_questions": [
+        "Does the report avoid inflating findings to appear thorough in a clean codebase?",
+        "Are license headers and intentional suppressions handled correctly?"
+      ]
+    },
+    {
+      "id": "broken-windows-hunt-legacy",
+      "title": "Legacy codebase with heavy accumulated entropy",
+      "tags": ["high-entropy"],
+      "user_request": "Run broken windows hunt on this legacy codebase. There is a lot of tech debt so focus on prioritization and quick wins.",
+      "context": {
+        "repo_path": ".",
+        "notes": [
+          "This is a 5-year-old codebase with hundreds of TODOs, many disabled tests, and extensive commented-out code.",
+          "The team wants to start addressing entropy incrementally.",
+          "Prioritization is more important than completeness.",
+          "Some deprecated APIs are still in use across many files."
+        ],
+        "available_artifacts": [
+          "source files across src/, lib/, and app/",
+          "test suites with many skipped tests",
+          "git history spanning 5 years"
+        ]
+      },
+      "artifact_requirements": [
+        "Report prioritizes findings rather than listing everything exhaustively",
+        "Quick wins section highlights the 5 easiest fixes to start momentum",
+        "Health summary gives an honest high-level assessment of entropy level",
+        "Findings are severity-sorted to help the team triage"
+      ],
+      "shared_criteria": ["concrete-evidence", "actionable-output", "instruction-adherence", "reviewable-structure"],
+      "static_checks": [
+        "Quick wins section is present and contains specific small fixes",
+        "Findings are sorted by severity within each category",
+        "Health summary addresses the overall entropy level"
+      ],
+      "review_questions": [
+        "Does the report prioritize effectively rather than dumping an overwhelming list?",
+        "Are the quick wins genuinely small fixes that can build cleanup momentum?"
+      ]
+    }
+  ]
+}

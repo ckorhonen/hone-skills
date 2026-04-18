@@ -1,0 +1,107 @@
+{
+  "schemaVersion": 1,
+  "skill": "hone:duplication-hunt",
+  "cases": [
+    {
+      "id": "duplication-hunt-happy",
+      "title": "Standard repo scan finding all three duplication types",
+      "tags": ["happy-path"],
+      "user_request": "Run a duplication hunt on this repository. Find exact copies, renamed duplicates, and structural duplicates. Show me the top 15 findings ranked by extraction value.",
+      "context": {
+        "repo_path": ".",
+        "notes": [
+          "Repository contains both production and test code.",
+          "There are known exact duplicates in the authentication modules.",
+          "Some utility functions follow the same pattern with different types (structural duplication).",
+          "Test setup code is repeated across multiple test files."
+        ],
+        "available_artifacts": [
+          "Full repository source tree"
+        ]
+      },
+      "artifact_requirements": [
+        "Markdown report with findings ranked by extraction value score",
+        "Each finding includes type, occurrence count, block size, locations with file:line, and code preview",
+        "Extraction suggestions with function name, parameters, and target location",
+        "Summary with type breakdown, total duplicated lines, and top extraction candidates"
+      ],
+      "shared_criteria": ["concrete-evidence", "actionable-output", "instruction-adherence", "reviewable-structure"],
+      "static_checks": [
+        "Findings include at least one of each duplication type (exact, renamed, structural)",
+        "Every file path and line range in findings exists in the repository",
+        "Each finding has a score computed from occurrences, block size, and type weight",
+        "Findings are sorted by score descending"
+      ],
+      "review_questions": [
+        "Are the exact duplicates genuinely identical across their reported locations?",
+        "Do the extraction suggestions include concrete function names and parameter lists rather than vague advice?"
+      ]
+    },
+    {
+      "id": "duplication-hunt-thresholds",
+      "title": "Custom minimum block size and occurrence count",
+      "tags": ["configuration"],
+      "user_request": "Run a duplication hunt with a minimum block size of 8 lines and require at least 3 occurrences for all duplication types. I only want to see patterns that appear frequently.",
+      "context": {
+        "repo_path": ".",
+        "notes": [
+          "User wants a higher bar: 8-line minimum and 3+ occurrences.",
+          "This should filter out small or low-frequency duplicates that appear with default settings.",
+          "Findings should be fewer but higher-value."
+        ],
+        "available_artifacts": [
+          "Full repository source tree"
+        ]
+      },
+      "artifact_requirements": [
+        "Markdown report using 8-line minimum and 3-occurrence minimum",
+        "No findings with block size under 8 lines",
+        "No findings with fewer than 3 occurrences",
+        "Report notes the configured thresholds"
+      ],
+      "shared_criteria": ["scope-discipline", "concrete-evidence", "instruction-adherence", "reviewable-structure"],
+      "static_checks": [
+        "Report states the configured thresholds (8 lines, 3 occurrences)",
+        "No finding has a block size under 8 lines",
+        "No finding has fewer than 3 occurrences"
+      ],
+      "review_questions": [
+        "Did the agent correctly apply both the block size and occurrence count thresholds?",
+        "Are any findings that would appear with default settings correctly filtered out?"
+      ]
+    },
+    {
+      "id": "duplication-hunt-boilerplate",
+      "title": "Intentional boilerplate is not flagged",
+      "tags": ["edge-case"],
+      "user_request": "Run a duplication hunt on this repository. Make sure it does not flag license headers, standard import blocks, or trivial getter/setter methods as duplication findings.",
+      "context": {
+        "repo_path": ".",
+        "notes": [
+          "Every source file starts with a 4-line license header.",
+          "Many files share similar 2-3 line import blocks.",
+          "Data model classes have trivial getter/setter methods that look identical structurally.",
+          "None of these should be flagged — they are intentional repetition."
+        ],
+        "available_artifacts": [
+          "Full repository source tree"
+        ]
+      },
+      "artifact_requirements": [
+        "Markdown report that excludes license headers, short import blocks, and trivial getters/setters",
+        "If any boilerplate-like patterns are noted, they are acknowledged as excluded rather than findings",
+        "Findings focus on non-trivial duplicated logic"
+      ],
+      "shared_criteria": ["scope-discipline", "honest-unknowns", "concrete-evidence", "instruction-adherence"],
+      "static_checks": [
+        "No finding is a license header block",
+        "No finding is an import block of 3 lines or fewer",
+        "No finding is a trivial getter or setter method"
+      ],
+      "review_questions": [
+        "Does the report correctly exclude intentional boilerplate patterns?",
+        "If any borderline cases exist (e.g., a 5-line import block), are they handled reasonably?"
+      ]
+    }
+  ]
+}

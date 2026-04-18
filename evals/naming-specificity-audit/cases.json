@@ -1,0 +1,109 @@
+{
+  "schemaVersion": 1,
+  "skill": "hone:naming-specificity-audit",
+  "cases": [
+    {
+      "id": "naming-specificity-audit-happy",
+      "title": "Repo with classic vague names and clear responsibilities",
+      "tags": ["happy-path"],
+      "user_request": "Audit this repo for vaguely named classes, modules, and functions. Suggest more specific names based on what the code actually does.",
+      "context": {
+        "repo_path": ".",
+        "notes": [
+          "The repo has classes like UserManager, DataProcessor, StringUtils, and ApiHelper.",
+          "Each class has a single clear responsibility despite its vague name.",
+          "No MVC framework is in use."
+        ],
+        "available_artifacts": [
+          "source files in src/",
+          "class declarations spread across multiple modules"
+        ]
+      },
+      "artifact_requirements": [
+        "Markdown report with summary, findings table, and prioritized action list",
+        "Each finding includes file path, line number, current name, what the code does, and suggested name",
+        "Suggested names are specific to the code's behavior, not generic swaps"
+      ],
+      "shared_criteria": ["concrete-evidence", "actionable-output", "instruction-adherence", "reviewable-structure"],
+      "static_checks": [
+        "Report contains a findings table with file path and line number columns",
+        "Suggested names differ meaningfully from simple suffix replacement",
+        "A prioritized action list is present"
+      ],
+      "review_questions": [
+        "Are the suggested names derived from what the code actually does, or are they mechanical suffix swaps?",
+        "Does the report correctly identify the primary responsibility of each flagged entity?"
+      ]
+    },
+    {
+      "id": "naming-specificity-audit-framework",
+      "title": "MVC framework project with idiomatic generic names",
+      "tags": ["framework-aware"],
+      "user_request": "Run a naming specificity audit on this Rails application. Be aware that Controller and Service are conventional in Rails.",
+      "context": {
+        "repo_path": ".",
+        "notes": [
+          "This is a Rails 7 application with standard MVC structure.",
+          "Controller classes in app/controllers/ follow Rails conventions.",
+          "Some service objects in app/services/ use vague names beyond the Service suffix.",
+          "There are also lib/ classes with names like DataHelper and ProcessorBase."
+        ],
+        "available_artifacts": [
+          "Rails app in standard directory structure",
+          "Gemfile confirming Rails 7",
+          "Controllers in app/controllers/",
+          "Services in app/services/",
+          "Library code in lib/"
+        ]
+      },
+      "artifact_requirements": [
+        "Report detects Rails and excludes conventional Controller names in app/controllers/",
+        "Service objects are evaluated on the specificity of the full name, not just the suffix",
+        "Non-framework code in lib/ is fully audited"
+      ],
+      "shared_criteria": ["concrete-evidence", "actionable-output", "instruction-adherence", "scope-discipline"],
+      "static_checks": [
+        "Standard Rails controllers are not flagged",
+        "Findings from lib/ are included",
+        "Report notes the framework detection"
+      ],
+      "review_questions": [
+        "Does the report correctly identify Rails conventions and avoid flagging idiomatic Controller names?",
+        "Are vague names in non-framework locations (lib/) still caught?"
+      ]
+    },
+    {
+      "id": "naming-specificity-audit-god-objects",
+      "title": "Repo with entities too complex to rename meaningfully",
+      "tags": ["edge-case"],
+      "user_request": "Audit naming specificity. Some of our classes might be doing too much for a simple rename to help.",
+      "context": {
+        "repo_path": ".",
+        "notes": [
+          "The repo has a 600-line OrderManager that handles validation, pricing, notification, and persistence.",
+          "There is a DataProcessor that transforms, validates, and exports data in three formats.",
+          "Some smaller classes have vague names but clear single responsibilities."
+        ],
+        "available_artifacts": [
+          "source files in src/",
+          "large classes in src/core/"
+        ]
+      },
+      "artifact_requirements": [
+        "God objects are flagged as low confidence with a note that decomposition is needed before renaming",
+        "Smaller classes with clear responsibilities get high-confidence rename suggestions",
+        "Design concerns section is present and substantive"
+      ],
+      "shared_criteria": ["concrete-evidence", "actionable-output", "honest-unknowns", "reviewable-structure"],
+      "static_checks": [
+        "At least one finding is tagged low confidence with a design concern note",
+        "A design concerns section exists separate from the main findings",
+        "High-confidence findings have specific rename suggestions"
+      ],
+      "review_questions": [
+        "Does the report distinguish between entities that need renaming and entities that need decomposition?",
+        "Are the low-confidence findings honest about the limitation of renaming alone?"
+      ]
+    }
+  ]
+}

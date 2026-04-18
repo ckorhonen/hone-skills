@@ -1,0 +1,121 @@
+{
+  "schemaVersion": 1,
+  "skill": "hone:automation-opportunities",
+  "cases": [
+    {
+      "id": "automation-opportunities-happy",
+      "title": "Repo with documented manual processes and missing scripts",
+      "tags": ["happy-path"],
+      "user_request": "Find automation opportunities in this repo. Look for manual deploy steps, missing setup scripts, repetitive workflows, and things that should be in source control.",
+      "context": {
+        "repo_path": ".",
+        "notes": [
+          "The README has a 10-step manual deploy process.",
+          "Getting started requires 8 manual commands with no bootstrap script.",
+          "Releases are done by manually editing version numbers and creating tags.",
+          "The README references a .env.example that does not exist in the repo.",
+          "There is a basic CI pipeline but it only runs tests, not deploys."
+        ],
+        "available_artifacts": [
+          "README.md with deploy and setup instructions",
+          "CONTRIBUTING.md with release process",
+          ".github/workflows/ci.yml with test-only pipeline",
+          "source files with operational comments"
+        ]
+      },
+      "artifact_requirements": [
+        "Markdown report with summary, categorized findings, ROI ranking, and quick wins",
+        "Each finding includes location, description, impact, effort, and suggested approach",
+        "Missing .env.example is flagged with reference to where it is mentioned",
+        "Existing CI pipeline is acknowledged, not re-recommended"
+      ],
+      "shared_criteria": ["concrete-evidence", "actionable-output", "instruction-adherence", "reviewable-structure"],
+      "static_checks": [
+        "Report has sections for summary, categorized findings, ROI ranking, and quick wins",
+        "At least one finding references the README deploy steps",
+        "Missing artifacts checklist is present",
+        "Existing CI pipeline is mentioned as already in place"
+      ],
+      "review_questions": [
+        "Does each finding cite a specific file and section rather than giving generic advice?",
+        "Are the suggested automation approaches concrete enough to act on (naming tools or script types)?"
+      ]
+    },
+    {
+      "id": "automation-opportunities-mature",
+      "title": "Well-automated repo to test false positive rate",
+      "tags": ["edge-case"],
+      "user_request": "Run the monthly automation opportunities audit. This repo has good CI/CD and scripts already.",
+      "context": {
+        "repo_path": ".",
+        "notes": [
+          "The repo has a comprehensive CI/CD pipeline covering test, build, and deploy.",
+          "A bootstrap script handles local setup.",
+          "Releases are automated with semantic-release.",
+          "There may be a few remaining manual steps in edge cases.",
+          ".env.example and all config templates are checked in."
+        ],
+        "available_artifacts": [
+          "README.md with setup instructions pointing to bootstrap script",
+          ".github/workflows/ with multiple pipeline configs",
+          "scripts/ directory with setup, deploy, and release scripts",
+          ".env.example present in repo root"
+        ]
+      },
+      "artifact_requirements": [
+        "Report acknowledges the repo's automation maturity",
+        "Few or no false positives recommending automation that already exists",
+        "Any findings are genuinely incremental improvements, not basics",
+        "Summary honestly reflects the mature state"
+      ],
+      "shared_criteria": ["concrete-evidence", "honest-unknowns", "scope-discipline", "actionable-output"],
+      "static_checks": [
+        "Existing scripts and CI pipelines are acknowledged",
+        "Report does not recommend creating automation that already exists",
+        "Summary reflects mature automation state"
+      ],
+      "review_questions": [
+        "Does the report avoid recommending automation that already exists in the repo?",
+        "Are the remaining findings genuinely incremental improvements worth the effort?"
+      ]
+    },
+    {
+      "id": "automation-opportunities-greenfield",
+      "title": "New project with no CI, no scripts, manual everything",
+      "tags": ["missing-infra"],
+      "user_request": "Audit this new project for automation opportunities. We have nothing automated yet and want to know where to start.",
+      "context": {
+        "repo_path": ".",
+        "notes": [
+          "This is a new project with source code but no CI/CD pipeline.",
+          "The README has manual setup, build, test, and deploy instructions.",
+          "There are no scripts, no Makefile, no Dockerfile.",
+          "Several source file comments reference config files and env vars that are not in the repo.",
+          "The team wants to prioritize the highest-ROI automation first."
+        ],
+        "available_artifacts": [
+          "README.md with all-manual instructions",
+          "source files in src/",
+          "no CI config, no scripts directory"
+        ]
+      },
+      "artifact_requirements": [
+        "Report covers all major automation gaps without being overwhelming",
+        "ROI ranking clearly identifies the first 3 things to automate",
+        "Quick wins focus on the highest-leverage starting points",
+        "Missing artifacts checklist identifies config and env files to add"
+      ],
+      "shared_criteria": ["concrete-evidence", "actionable-output", "instruction-adherence", "reviewable-structure"],
+      "static_checks": [
+        "ROI ranking section is present with clear top priorities",
+        "Quick wins section identifies 3-5 starting points",
+        "Missing artifacts checklist is present",
+        "Findings reference specific README sections or source file comments"
+      ],
+      "review_questions": [
+        "Does the ROI ranking help a team decide what to automate first?",
+        "Are the quick wins genuinely the highest-leverage starting points for a greenfield project?"
+      ]
+    }
+  ]
+}

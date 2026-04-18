@@ -1,0 +1,102 @@
+{
+  "schemaVersion": 1,
+  "skill": "hone:intent-clarity-audit",
+  "cases": [
+    {
+      "id": "intent-clarity-audit-happy",
+      "title": "Scan recently changed files for all intent clarity issues",
+      "tags": ["happy-path"],
+      "user_request": "Run an intent clarity audit on files changed in the last 14 days. Check all five categories and show me the top 25 findings.",
+      "context": {
+        "repo_path": ".",
+        "notes": [
+          "Repository has git history available.",
+          "Recent commits include files with nested ternaries, single-letter variable names in long functions, and bare boolean arguments.",
+          "Some files use idiomatic short variable names in loops that should not be flagged."
+        ],
+        "available_artifacts": [
+          "Git history for recency filtering",
+          "Full repository source tree"
+        ]
+      },
+      "artifact_requirements": [
+        "Markdown report with findings grouped by severity",
+        "Each finding includes category, file:line, code snippet, and explanation",
+        "Summary with category breakdown and hotspot files"
+      ],
+      "shared_criteria": ["concrete-evidence", "actionable-output", "instruction-adherence", "reviewable-structure"],
+      "static_checks": [
+        "All referenced files appear in git log for the last 14 days",
+        "Findings are grouped into high, medium, and low severity sections",
+        "Every snippet is real code from the referenced file and line"
+      ],
+      "review_questions": [
+        "Are severity assignments consistent with the skill's classification criteria?",
+        "Are idiomatic patterns (loop variables, unused-var underscores) correctly excluded from findings?"
+      ]
+    },
+    {
+      "id": "intent-clarity-audit-categories",
+      "title": "Restrict scan to nested ternaries and unnamed booleans only",
+      "tags": ["configuration"],
+      "user_request": "Run an intent clarity audit but only check for nested ternaries and unnamed boolean parameters. Skip the other three categories. Scan the full repo, not just recent changes.",
+      "context": {
+        "repo_path": ".",
+        "notes": [
+          "User wants only two of five categories.",
+          "Findings from unclear names, clever one-liners, and restating comments should not appear."
+        ],
+        "available_artifacts": [
+          "Full repository source tree"
+        ]
+      },
+      "artifact_requirements": [
+        "Markdown report with only nested-ternary and unnamed-boolean findings",
+        "No findings from the other three categories",
+        "Report notes which categories were enabled"
+      ],
+      "shared_criteria": ["scope-discipline", "concrete-evidence", "instruction-adherence", "reviewable-structure"],
+      "static_checks": [
+        "No finding has a category outside of 'Nested ternary' or 'Unnamed boolean'",
+        "Report header or notes mention the category filter"
+      ],
+      "review_questions": [
+        "Did the agent correctly limit findings to only the two requested categories?",
+        "Are the nested ternary and unnamed boolean findings themselves accurate and well-classified?"
+      ]
+    },
+    {
+      "id": "intent-clarity-audit-idioms",
+      "title": "Idiomatic patterns are not flagged as false positives",
+      "tags": ["edge-case"],
+      "user_request": "Run an intent clarity audit on this repository. I want to make sure it does not flag idiomatic patterns like loop index variables, Python underscore conventions, or standard short names in list comprehensions.",
+      "context": {
+        "repo_path": ".",
+        "notes": [
+          "Repository contains Python list comprehensions with single-letter variables.",
+          "Go code uses short receiver names (idiomatic).",
+          "JavaScript code uses `_` for unused callback parameters.",
+          "These are all idiomatic and should not be flagged."
+        ],
+        "available_artifacts": [
+          "Full repository source tree"
+        ]
+      },
+      "artifact_requirements": [
+        "Markdown report that does not flag idiomatic short names",
+        "If any idiomatic patterns are noted, they are marked as excluded rather than findings",
+        "Findings focus on genuinely unclear code, not language conventions"
+      ],
+      "shared_criteria": ["scope-discipline", "honest-unknowns", "concrete-evidence", "instruction-adherence"],
+      "static_checks": [
+        "No finding flags a single-letter loop index in a loop body of 5 lines or fewer",
+        "No finding flags underscore-prefixed unused variables",
+        "No finding flags Go single-letter receiver names"
+      ],
+      "review_questions": [
+        "Does the report correctly distinguish idiomatic short names from genuinely unclear names?",
+        "Are there any false positives where a language-standard convention was flagged?"
+      ]
+    }
+  ]
+}

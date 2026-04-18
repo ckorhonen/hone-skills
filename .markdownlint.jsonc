@@ -1,0 +1,13 @@
+{
+  "default": true,
+  // Allow long lines in skill files
+  "MD013": false,
+  // Allow duplicate headings across files
+  "MD024": { "siblings_only": true },
+  // Allow trailing punctuation in headings
+  "MD026": false,
+  // Allow inline HTML
+  "MD033": false,
+  // Allow compact table column separators
+  "MD060": false
+}

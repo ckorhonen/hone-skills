@@ -1,0 +1,537 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Hone Skills &mdash; 8 AI Skills for Timeless Code Quality Practices</title>
+    <meta
+      name="description"
+      content="8 AI skills that enforce timeless software engineering practices. Method brevity, intent clarity, duplication detection, and entropy hunting across any codebase."
+    />
+    <meta name="robots" content="index,follow" />
+    <meta name="theme-color" content="#0f1117" media="(prefers-color-scheme: dark)" />
+    <meta name="theme-color" content="#f4f5f7" media="(prefers-color-scheme: light)" />
+    <meta property="og:title" content="Hone Skills &mdash; AI Skills for Timeless Code Quality" />
+    <meta property="og:description" content="8 AI skills that enforce timeless software engineering practices. Practices outlast tools." />
+    <meta property="og:type" content="website" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="Hone Skills &mdash; AI Skills for Timeless Code Quality" />
+    <meta name="twitter:description" content="8 AI skills that enforce timeless software engineering practices." />
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "SoftwareApplication",
+        "name": "hone-skills",
+        "applicationCategory": "DeveloperApplication",
+        "operatingSystem": "Any",
+        "description": "8 AI skills for timeless code quality: method brevity, intent clarity, duplication detection, and entropy hunting.",
+        "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
+      }
+    </script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <script>document.documentElement.classList.add("js");</script>
+    <link rel="stylesheet" href="styles.css" />
+    <script defer src="script.js"></script>
+  </head>
+  <body>
+    <a class="skip-link" href="#main">Skip to content</a>
+
+    <header class="site-header">
+      <div class="site-header-inner">
+        <a class="brand" href="#top" aria-label="hone-skills home">
+          <span class="brand-mark" aria-hidden="true">&loz;</span>
+          <span class="brand-wordmark">
+            <span class="brand-name">hone</span><span class="brand-domain">-skills</span>
+          </span>
+        </a>
+        <nav class="top-nav" aria-label="Primary">
+          <a href="#story">Story</a>
+          <a href="#framework">Framework</a>
+          <a href="#skills">Skills</a>
+          <a href="#schedules">Schedules</a>
+          <a href="#install">Install</a>
+          <a href="#faq">FAQ</a>
+        </nav>
+      </div>
+    </header>
+
+    <div class="page-shell">
+      <main id="main">
+
+        <!-- HERO -->
+        <section class="hero section" id="top" data-reveal>
+          <div class="hero-copy">
+            <p class="eyebrow">Practices that outlast every framework</p>
+            <h1>Code that says what it means.</h1>
+            <p class="lede">
+              8 skills that enforce timeless software engineering practices &mdash;
+              method brevity, naming clarity, duplication detection, and entropy
+              hunting with concrete, file-level evidence.
+            </p>
+            <div class="hero-actions">
+              <a class="button button-primary" href="#install">Get Started</a>
+              <a class="button button-secondary" href="#skills">Explore Skills</a>
+            </div>
+            <div class="works-with" aria-label="Works with">
+              <span>Works with</span>
+              <ul>
+                <li>Claude</li>
+                <li>Codex</li>
+                <li>Cursor</li>
+                <li>Gemini CLI</li>
+                <li>GitHub Copilot</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="hero-art" aria-hidden="true" data-parallax>
+            <div class="terminal-window">
+              <div class="terminal-chrome">
+                <span class="terminal-dot"></span>
+                <span class="terminal-dot"></span>
+                <span class="terminal-dot"></span>
+                <span class="terminal-title">hone:broken-windows-hunt</span>
+              </div>
+              <div class="terminal-body">
+                <p><span class="t-dim">$</span> <span class="t-green">hone:broken-windows-hunt</span></p>
+                <p class="t-dim">&nbsp;</p>
+                <p><span class="t-label">Scope</span> 847 files scanned across <span class="t-cyan">src/</span></p>
+                <p class="t-dim">&nbsp;</p>
+                <p><span class="t-warn">Entropy</span> 14 stale TODOs older than 90 days</p>
+                <p><span class="t-warn">Entropy</span> 6 commented-out code blocks</p>
+                <p><span class="t-warn">Entropy</span> 3 disabled tests with no tracking issue</p>
+                <p class="t-dim">&nbsp;</p>
+                <p><span class="t-ok">Action</span> Ranked backlog: 23 items, top 5 highlighted</p>
+              </div>
+            </div>
+            <div class="hero-card hero-card-1">
+              <span class="hero-card-label">Timeless</span>
+              <span class="hero-card-detail">Practices that survive framework churn</span>
+            </div>
+            <div class="hero-card hero-card-2">
+              <span class="hero-card-label">Schedulable</span>
+              <span class="hero-card-detail">Run daily, weekly, or every PR</span>
+            </div>
+          </div>
+        </section>
+
+        <!-- BEFORE / AFTER -->
+        <section class="comparison section numbered" id="story" data-reveal>
+          <div class="section-heading">
+            <span class="section-number">01</span>
+            <div>
+              <p class="eyebrow">The philosophy</p>
+              <h2>Practices change slower than tools.</h2>
+            </div>
+          </div>
+
+          <div class="comparison-grid">
+            <article class="comparison-card before">
+              <p class="comparison-label">Without Hone</p>
+              <h3>Entropy creeps in silently</h3>
+              <ul>
+                <li>Methods grow to 200 lines, nobody notices.</li>
+                <li>Magic number <code>86400</code> appears in 7 files.</li>
+                <li>Test called <code>test1</code> passes but tests nothing useful.</li>
+                <li>Same validation logic copy-pasted across 4 services.</li>
+                <li>Class called <code>DataManager</code> manages everything.</li>
+              </ul>
+            </article>
+
+            <article class="comparison-card after">
+              <p class="comparison-label">With Hone Skills</p>
+              <h3>Caught at the source</h3>
+              <ul>
+                <li><code>OrderService.process()</code> is 187 lines &mdash; split at natural seams.</li>
+                <li><code>86400</code> &rarr; named constant <code>SECONDS_PER_DAY</code> in 7 locations.</li>
+                <li>12 tests fail naming audit &mdash; rewrite as behavior sentences.</li>
+                <li>Validation pattern duplicated 4&times; &mdash; extract to <code>shared/validate</code>.</li>
+                <li><code>DataManager</code> &rarr; <code>OrderFetcher</code>, <code>InventoryCalculator</code>.</li>
+              </ul>
+              <p class="approved-badge">Concrete. Timeless. Actionable.</p>
+            </article>
+          </div>
+          <div class="comparison-track" aria-hidden="true">
+            <span>silent decay</span>
+            <span class="track-line"></span>
+            <span>scheduled vigilance</span>
+          </div>
+        </section>
+
+        <!-- FRAMEWORK -->
+        <section class="framework section numbered" id="framework" data-reveal>
+          <div class="section-heading">
+            <span class="section-number">02</span>
+            <div>
+              <p class="eyebrow">The framework</p>
+              <h2>8 skills from 25 proven practices.</h2>
+            </div>
+          </div>
+
+          <div class="framework-panel">
+            <div class="framework-banner">
+              <p>Based on timeless engineering practices that have survived decades of framework churn. Run one at a time, schedule them continuously, or let your AI assistant pick the right one.</p>
+            </div>
+
+            <div class="phase-grid">
+              <article class="phase-card">
+                <span>Clarity</span>
+                <p class="phase-count">3 skills</p>
+                <p>Keep methods short, names specific, and code that says what it means.</p>
+              </article>
+              <article class="phase-card">
+                <span>Discipline</span>
+                <p class="phase-count">2 skills</p>
+                <p>Eliminate duplication and magic values before they multiply.</p>
+              </article>
+              <article class="phase-card">
+                <span>Hygiene</span>
+                <p class="phase-count">2 skills</p>
+                <p>Hunt entropy and enforce test naming as complete sentences.</p>
+              </article>
+              <article class="phase-card">
+                <span>Automation</span>
+                <p class="phase-count">1 skill</p>
+                <p>Find manual processes ripe for scripting and source control.</p>
+              </article>
+            </div>
+          </div>
+        </section>
+
+        <!-- SKILLS -->
+        <section class="skills section numbered" id="skills">
+          <div class="section-heading" data-reveal>
+            <span class="section-number">03</span>
+            <div>
+              <p class="eyebrow">The skill set</p>
+              <h2>Every skill, with example prompts and output.</h2>
+            </div>
+          </div>
+
+          <div class="skill-stack">
+
+            <!-- CLARITY -->
+            <p class="skill-group-label" data-reveal>Clarity</p>
+
+            <article class="skill-card skill-featured" data-reveal>
+              <div class="skill-meta">
+                <p class="eyebrow">Start here</p>
+                <h3><code>hone:method-brevity-audit</code></h3>
+                <p class="skill-role">Find methods that have grown too long &mdash; ranked by length, nesting depth, and branch complexity.</p>
+              </div>
+              <div class="skill-content">
+                <p class="prompt-label">Example prompt</p>
+                <pre><code>Find the longest methods in this repo and suggest where to split them.</code></pre>
+                <p class="output-label">Sample output</p>
+                <div class="sample-output">
+                  <p><span class="t-label">Scope</span> 342 functions scanned across <span class="t-cyan">src/</span></p>
+                  <p><span class="t-warn">#1</span> OrderService.process() &mdash; 187 lines, depth 6</p>
+                  <p class="t-dim">&nbsp;&nbsp;src/services/order.ts:45 &mdash; split at validation/persistence seam</p>
+                  <p><span class="t-warn">#2</span> parseConfig() &mdash; 134 lines, 12 branches</p>
+                  <p><span class="t-ok">Backlog</span> 8 more methods above threshold, ranked</p>
+                </div>
+              </div>
+            </article>
+
+            <article class="skill-card" data-reveal>
+              <div class="skill-meta">
+                <h3><code>hone:intent-clarity-audit</code></h3>
+                <p class="skill-role">Spots code that hides intent &mdash; unclear names, nested ternaries, restating comments.</p>
+              </div>
+              <div class="skill-content">
+                <p class="prompt-label">Example prompt</p>
+                <pre><code>Find code in src/ that's hard to read at a glance.</code></pre>
+                <p class="output-label">Sample output</p>
+                <div class="sample-output">
+                  <p><span class="t-warn">Name</span> <span class="t-cyan">data</span>, <span class="t-cyan">tmp</span>, <span class="t-cyan">x</span> &mdash; 23 unclear variables</p>
+                  <p><span class="t-warn">Ternary</span> 4 nested ternaries across 3 files</p>
+                  <p><span class="t-label">Comment</span> 7 comments that restate the code</p>
+                  <p><span class="t-ok">Focus</span> Recently changed files prioritized</p>
+                </div>
+              </div>
+            </article>
+
+            <article class="skill-card" data-reveal>
+              <div class="skill-meta">
+                <h3><code>hone:naming-specificity-audit</code></h3>
+                <p class="skill-role">Flags vague names like Manager, Handler, Utils &mdash; suggests specific alternatives.</p>
+              </div>
+              <div class="skill-content">
+                <p class="prompt-label">Example prompt</p>
+                <pre><code>Find classes and functions with vague generic names.</code></pre>
+                <p class="output-label">Sample output</p>
+                <div class="sample-output">
+                  <p><span class="t-warn">Vague</span> DataManager &rarr; OrderFetcher, InventoryCalculator</p>
+                  <p><span class="t-warn">Vague</span> utils.ts &rarr; split by domain: date-format, currency</p>
+                  <p><span class="t-label">Note</span> BaseService has 4 subclasses, none override anything</p>
+                  <p><span class="t-ok">Clean</span> api/routes/ &mdash; all names describe behavior</p>
+                </div>
+              </div>
+            </article>
+
+            <!-- DISCIPLINE -->
+            <p class="skill-group-label" data-reveal>Discipline</p>
+
+            <article class="skill-card" data-reveal>
+              <div class="skill-meta">
+                <h3><code>hone:duplication-hunt</code></h3>
+                <p class="skill-role">Finds duplicated patterns worth extracting &mdash; exact copies, renamed clones, and structural repetition.</p>
+              </div>
+              <div class="skill-content">
+                <p class="prompt-label">Example prompt</p>
+                <pre><code>Find duplicated code patterns across the codebase.</code></pre>
+                <p class="output-label">Sample output</p>
+                <div class="sample-output">
+                  <p><span class="t-warn">3&times;</span> Validation logic repeated in 3 route handlers</p>
+                  <p class="t-dim">&nbsp;&nbsp;api/users.ts:20, api/orders.ts:18, api/products.ts:22</p>
+                  <p><span class="t-warn">2&times;</span> Error formatting duplicated in 2 middleware files</p>
+                  <p><span class="t-ok">Extract</span> Top candidate: shared validation &rarr; lib/validate.ts</p>
+                </div>
+              </div>
+            </article>
+
+            <article class="skill-card" data-reveal>
+              <div class="skill-meta">
+                <h3><code>hone:magic-number-hunt</code></h3>
+                <p class="skill-role">Surfaces magic numbers, hardcoded URLs, and buried config values that should be named constants.</p>
+              </div>
+              <div class="skill-content">
+                <p class="prompt-label">Example prompt</p>
+                <pre><code>Find magic numbers and unexplained literals in this repo.</code></pre>
+                <p class="output-label">Sample output</p>
+                <div class="sample-output">
+                  <p><span class="t-warn">Magic</span> <span class="t-cyan">86400</span> appears in 7 files &rarr; SECONDS_PER_DAY</p>
+                  <p><span class="t-warn">Magic</span> <span class="t-cyan">0.15</span> in billing &rarr; TAX_RATE or config</p>
+                  <p><span class="t-label">URL</span> 3 hardcoded API endpoints &rarr; move to env config</p>
+                  <p><span class="t-ok">Clean</span> constants/ directory well-organized</p>
+                </div>
+              </div>
+            </article>
+
+            <!-- HYGIENE -->
+            <p class="skill-group-label" data-reveal>Hygiene</p>
+
+            <article class="skill-card" data-reveal>
+              <div class="skill-meta">
+                <h3><code>hone:broken-windows-hunt</code></h3>
+                <p class="skill-role">Detects entropy: stale TODOs, disabled tests, lint suppressions, commented-out code, dead imports.</p>
+              </div>
+              <div class="skill-content">
+                <p class="prompt-label">Example prompt</p>
+                <pre><code>Hunt for broken windows and entropy signals in this repo.</code></pre>
+                <p class="output-label">Sample output</p>
+                <div class="sample-output">
+                  <p><span class="t-warn">TODO</span> 14 stale TODOs older than 90 days, no linked issues</p>
+                  <p><span class="t-warn">Dead</span> 6 commented-out code blocks across 4 files</p>
+                  <p><span class="t-warn">Skip</span> 3 tests disabled with no tracking ticket</p>
+                  <p><span class="t-label">Lint</span> 9 eslint-disable comments &mdash; 4 have no explanation</p>
+                  <p><span class="t-ok">Backlog</span> 23 items ranked by severity and age</p>
+                </div>
+              </div>
+            </article>
+
+            <article class="skill-card" data-reveal>
+              <div class="skill-meta">
+                <h3><code>hone:test-naming-audit</code></h3>
+                <p class="skill-role">Checks that test names read as complete sentences describing behavior, not cryptic abbreviations.</p>
+              </div>
+              <div class="skill-content">
+                <p class="prompt-label">Example prompt</p>
+                <pre><code>Check that our test names describe behavior clearly.</code></pre>
+                <p class="output-label">Sample output</p>
+                <div class="sample-output">
+                  <p><span class="t-warn">Cryptic</span> test1, testAuth, testEdge &mdash; 12 violations</p>
+                  <p><span class="t-label">Short</span> 8 names under 4 words (likely too vague)</p>
+                  <p><span class="t-ok">Good</span> "returns 404 when user not found" &mdash; 87 pass</p>
+                  <p><span class="t-ok">Suggest</span> test1 &rarr; "creates order with valid payment method"</p>
+                </div>
+              </div>
+            </article>
+
+            <!-- AUTOMATION -->
+            <p class="skill-group-label" data-reveal>Automation</p>
+
+            <article class="skill-card" data-reveal>
+              <div class="skill-meta">
+                <h3><code>hone:automation-opportunities</code></h3>
+                <p class="skill-role">Finds manual processes ripe for automation: deploy steps, setup scripts, repetitive workflows.</p>
+              </div>
+              <div class="skill-content">
+                <p class="prompt-label">Example prompt</p>
+                <pre><code>What manual processes in this repo could be automated?</code></pre>
+                <p class="output-label">Sample output</p>
+                <div class="sample-output">
+                  <p><span class="t-warn">Manual</span> 7-step deploy process in README &rarr; script candidate</p>
+                  <p><span class="t-warn">Manual</span> Database seed requires 4 manual commands</p>
+                  <p><span class="t-label">Missing</span> .env.example not in source control</p>
+                  <p><span class="t-ok">Script</span> Top 3 ranked by frequency and effort saved</p>
+                </div>
+              </div>
+            </article>
+
+          </div>
+        </section>
+
+        <!-- SCHEDULES -->
+        <section class="schedules section numbered" id="schedules" data-reveal>
+          <div class="section-heading">
+            <span class="section-number">04</span>
+            <div>
+              <p class="eyebrow">Suggested schedules</p>
+              <h2>Run once, or run continuously.</h2>
+            </div>
+          </div>
+
+          <div class="schedule-grid">
+            <article class="schedule-card">
+              <span class="schedule-badge badge-pr">Every PR</span>
+              <ul>
+                <li><code>hone:test-naming-audit</code></li>
+              </ul>
+              <p class="schedule-why">Catch bad test names before they land in main.</p>
+            </article>
+            <article class="schedule-card">
+              <span class="schedule-badge badge-daily">Daily</span>
+              <ul>
+                <li><code>hone:broken-windows-hunt</code></li>
+              </ul>
+              <p class="schedule-why">Stop entropy before it compounds.</p>
+            </article>
+            <article class="schedule-card">
+              <span class="schedule-badge badge-weekly">Weekly</span>
+              <ul>
+                <li><code>hone:method-brevity-audit</code></li>
+                <li><code>hone:intent-clarity-audit</code></li>
+                <li><code>hone:duplication-hunt</code></li>
+                <li><code>hone:magic-number-hunt</code></li>
+                <li><code>hone:naming-specificity-audit</code></li>
+              </ul>
+              <p class="schedule-why">Deeper analysis that doesn't need to run every day.</p>
+            </article>
+            <article class="schedule-card">
+              <span class="schedule-badge badge-monthly">Monthly</span>
+              <ul>
+                <li><code>hone:automation-opportunities</code></li>
+              </ul>
+              <p class="schedule-why">Strategic improvements at a sustainable cadence.</p>
+            </article>
+          </div>
+        </section>
+
+        <!-- INSTALL -->
+        <section class="install section numbered" id="install" data-reveal>
+          <div class="section-heading">
+            <span class="section-number">05</span>
+            <div>
+              <p class="eyebrow">Get started</p>
+              <h2>One command. Every major AI harness.</h2>
+            </div>
+          </div>
+
+          <div class="install-layout">
+            <div class="install-copy">
+              <p>
+                Install the full Hone skills framework, then start with
+                <code>hone:broken-windows-hunt</code> for a quick entropy scan
+                or <code>hone:method-brevity-audit</code> for a deep dive.
+              </p>
+              <ul class="install-notes">
+                <li>Works with Claude, Codex, Cursor, Gemini CLI, and GitHub Copilot</li>
+                <li>Language and framework agnostic &mdash; works on any codebase</li>
+                <li>Evidence-led: every finding cites files, lines, and concrete evidence</li>
+                <li>Designed for recurring scheduled use, not one-off runs</li>
+              </ul>
+            </div>
+
+            <div class="command-block">
+              <p class="command-label">Install</p>
+              <div class="command-row">
+                <code id="install-command">npx skills add ckorhonen/hone-skills</code>
+                <button class="copy-button" type="button" data-copy-target="install-command">Copy</button>
+              </div>
+              <p class="command-help">
+                Installs all 8 skills into your project. Works with any agent
+                that supports the skills standard.
+              </p>
+            </div>
+          </div>
+          <div class="install-separator" aria-hidden="true"></div>
+        </section>
+
+        <!-- FAQ -->
+        <section class="faq section numbered" id="faq" data-reveal>
+          <div class="section-heading">
+            <span class="section-number">06</span>
+            <div>
+              <p class="eyebrow">Frequently asked</p>
+              <h2>For engineers who value craft.</h2>
+            </div>
+          </div>
+
+          <div class="faq-list">
+            <details>
+              <summary>Where do these practices come from?</summary>
+              <p>
+                From 25 timeless software engineering practices compiled at the
+                XTC meetup and documented on darkcoding.net. These practices
+                emphasize that good engineering judgment changes much slower
+                than tools &mdash; and is typically a better investment.
+              </p>
+            </details>
+            <details>
+              <summary>Does it work with any language or framework?</summary>
+              <p>
+                Yes. Skills are language-agnostic and adapt to whatever tooling
+                your repo already uses. They read your code structure, not a
+                config file.
+              </p>
+            </details>
+            <details>
+              <summary>How is this different from linters?</summary>
+              <p>
+                Linters check syntax and style rules. Hone skills reason about
+                your code &mdash; finding methods that grew too long, naming that
+                lost its meaning, duplication that crept across services, and
+                entropy signals that tools miss.
+              </p>
+            </details>
+            <details>
+              <summary>Can I run these on a schedule?</summary>
+              <p>
+                Absolutely. Each skill is designed for recurring use.
+                <code>hone:broken-windows-hunt</code> runs daily,
+                <code>hone:test-naming-audit</code> on every PR, and most
+                others weekly. Output formats support comparison across runs.
+              </p>
+            </details>
+            <details>
+              <summary>Where should I start?</summary>
+              <p>
+                Run <code>hone:broken-windows-hunt</code> for a quick entropy
+                snapshot, or <code>hone:method-brevity-audit</code> for a deeper
+                structural audit. Both produce immediate, actionable results.
+              </p>
+            </details>
+          </div>
+        </section>
+      </main>
+
+      <footer class="site-footer">
+        <p class="footer-brand">hone-skills</p>
+        <p class="footer-copy">
+          AI skills for timeless code quality. Practices that outlast every
+          framework. Evidence-grounded. Designed for recurring use.
+        </p>
+        <div class="footer-links">
+          <a href="https://github.com/ckorhonen/hone-skills">GitHub</a>
+          <a href="https://github.com/ckorhonen/hone-skills#readme">README</a>
+        </div>
+      </footer>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,103 @@
+{
+  "schemaVersion": 1,
+  "skill": "hone:method-brevity-audit",
+  "cases": [
+    {
+      "id": "method-brevity-audit-happy",
+      "title": "Standard multi-language repo scan with default threshold",
+      "tags": ["happy-path"],
+      "user_request": "Run a method brevity audit on this repository using the default 30-line threshold. Show me the top 20 longest methods.",
+      "context": {
+        "repo_path": ".",
+        "notes": [
+          "Repository contains TypeScript, Python, and Go source files.",
+          "Some methods are intentionally long (50-100+ lines) for test purposes.",
+          "The vendor/ and node_modules/ directories should be excluded by default."
+        ],
+        "available_artifacts": [
+          "Full repository source tree",
+          "File system access for line count verification"
+        ]
+      },
+      "artifact_requirements": [
+        "Markdown report with a findings table sorted by line count descending",
+        "Each finding includes method name, file:line range, line count, and language",
+        "Summary section with total methods scanned, count over threshold, and distribution"
+      ],
+      "shared_criteria": ["concrete-evidence", "actionable-output", "instruction-adherence", "reviewable-structure"],
+      "static_checks": [
+        "Findings table is present and non-empty",
+        "Every file path in findings exists in the repository",
+        "No finding has a line count of 30 or fewer",
+        "Findings are sorted by line count descending"
+      ],
+      "review_questions": [
+        "Are the reported line counts accurate to within 2 lines of the actual method length?",
+        "Does the summary accurately reflect the total number of methods scanned and the distribution of lengths?"
+      ]
+    },
+    {
+      "id": "method-brevity-audit-threshold",
+      "title": "Custom threshold changes reported findings",
+      "tags": ["configuration"],
+      "user_request": "Run a method brevity audit with a threshold of 50 lines instead of the default 30. Only show methods longer than 50 lines.",
+      "context": {
+        "repo_path": ".",
+        "notes": [
+          "The repository has methods ranging from 10 to 150+ lines.",
+          "Raising the threshold to 50 should eliminate many findings that appear at the default 30-line threshold."
+        ],
+        "available_artifacts": [
+          "Full repository source tree"
+        ]
+      },
+      "artifact_requirements": [
+        "Markdown report using 50-line threshold",
+        "No findings for methods of 50 lines or fewer",
+        "Summary reflects the 50-line threshold, not the default"
+      ],
+      "shared_criteria": ["concrete-evidence", "instruction-adherence", "reviewable-structure"],
+      "static_checks": [
+        "Report states threshold as 50 lines",
+        "No finding has a line count of 50 or fewer",
+        "Distribution buckets are relative to the 50-line threshold"
+      ],
+      "review_questions": [
+        "Did the agent correctly apply the 50-line threshold rather than the default 30?",
+        "Are methods between 30-50 lines correctly excluded from findings?"
+      ]
+    },
+    {
+      "id": "method-brevity-audit-exclusions",
+      "title": "Excluded directories are not scanned",
+      "tags": ["edge-case"],
+      "user_request": "Run a method brevity audit but exclude the test/ and scripts/ directories in addition to the default exclusions. Use the default 30-line threshold.",
+      "context": {
+        "repo_path": ".",
+        "notes": [
+          "The test/ directory contains intentionally long test helper methods.",
+          "The scripts/ directory contains long shell scripts.",
+          "Both should be excluded from the scan per user request."
+        ],
+        "available_artifacts": [
+          "Full repository source tree"
+        ]
+      },
+      "artifact_requirements": [
+        "Markdown report with no findings from test/ or scripts/ directories",
+        "Report mentions the applied exclusions",
+        "Default exclusions (vendor/, node_modules/, etc.) are also applied"
+      ],
+      "shared_criteria": ["scope-discipline", "concrete-evidence", "instruction-adherence", "reviewable-structure"],
+      "static_checks": [
+        "No finding references a file path under test/ or scripts/",
+        "No finding references a file path under vendor/ or node_modules/",
+        "Report header or notes mention the exclusion list"
+      ],
+      "review_questions": [
+        "Does the report correctly exclude all files under test/ and scripts/?",
+        "Are the default exclusion directories also properly excluded?"
+      ]
+    }
+  ]
+}

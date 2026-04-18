@@ -1,0 +1,103 @@
+{
+  "schemaVersion": 1,
+  "skill": "hone:magic-number-hunt",
+  "cases": [
+    {
+      "id": "magic-number-hunt-happy",
+      "title": "Standard repo with obvious magic numbers",
+      "tags": ["happy-path"],
+      "user_request": "Run a magic number hunt across this repository and report all unexplained literals that should be named constants or config values.",
+      "context": {
+        "repo_path": ".",
+        "notes": [
+          "The repo contains TypeScript and Python source files with several hardcoded timeout values, retry counts, URL strings, and numeric thresholds.",
+          "There is an existing constants file but it is incomplete."
+        ],
+        "available_artifacts": [
+          "source files in src/ and lib/",
+          "existing constants file at src/constants.ts"
+        ]
+      },
+      "artifact_requirements": [
+        "Markdown report with summary, findings table, and prioritized action list",
+        "Each finding includes file path, line number, exact literal value, severity, and suggested constant name",
+        "Findings are grouped by file and sorted by severity"
+      ],
+      "shared_criteria": ["concrete-evidence", "actionable-output", "instruction-adherence", "reviewable-structure"],
+      "static_checks": [
+        "Report contains a summary section with total count and severity breakdown",
+        "Every finding row has a file path and line number",
+        "A prioritized action list appears at the end"
+      ],
+      "review_questions": [
+        "Are the reported literal values actually present at the cited file paths and line numbers?",
+        "Are suggested constant names specific to the value's purpose rather than generic placeholders?"
+      ]
+    },
+    {
+      "id": "magic-number-hunt-polyglot",
+      "title": "Mixed-language repo tests language-agnostic detection",
+      "tags": ["multi-language"],
+      "user_request": "Hunt for magic numbers and hardcoded config values in this polyglot repo. It has Go, Python, and JavaScript.",
+      "context": {
+        "repo_path": ".",
+        "notes": [
+          "The repo mixes Go, Python, and JavaScript services.",
+          "Each language has different conventions for constants (Go const blocks, Python uppercase module vars, JS/TS const exports)."
+        ],
+        "available_artifacts": [
+          "Go files in services/api/",
+          "Python files in services/worker/",
+          "JavaScript files in services/web/"
+        ]
+      },
+      "artifact_requirements": [
+        "Findings span all three languages present in the repo",
+        "Suggested constant names follow each language's naming convention",
+        "Report does not assume a single-language repo"
+      ],
+      "shared_criteria": ["concrete-evidence", "actionable-output", "instruction-adherence", "reviewable-structure"],
+      "static_checks": [
+        "Findings include at least one from each of Go, Python, and JavaScript",
+        "Suggested names use language-appropriate casing (UPPER_SNAKE for Python/JS, CamelCase or const block for Go)"
+      ],
+      "review_questions": [
+        "Does the report handle all three languages or silently skip one?",
+        "Are the suggested fix locations appropriate for each language's constant conventions?"
+      ]
+    },
+    {
+      "id": "magic-number-hunt-low-signal",
+      "title": "Well-structured repo with few true positives",
+      "tags": ["edge-case"],
+      "user_request": "Run the magic number hunt. This codebase is fairly well-maintained so I expect few findings.",
+      "context": {
+        "repo_path": ".",
+        "notes": [
+          "Most numeric and string constants are already extracted to config modules.",
+          "A few recently added files may have slipped through review.",
+          "Test files contain many literal values as fixture data."
+        ],
+        "available_artifacts": [
+          "source files in src/",
+          "config module at src/config/",
+          "test files in tests/"
+        ]
+      },
+      "artifact_requirements": [
+        "Report correctly identifies the small number of true positives without over-reporting",
+        "Test fixture data is excluded or clearly tagged as low severity",
+        "Summary acknowledges the codebase is generally well-maintained"
+      ],
+      "shared_criteria": ["concrete-evidence", "actionable-output", "honest-unknowns", "scope-discipline"],
+      "static_checks": [
+        "Test fixture literals are not flagged as high severity",
+        "Report does not inflate findings to appear thorough"
+      ],
+      "review_questions": [
+        "Does the report avoid flagging test fixture data as meaningful magic numbers?",
+        "Does the summary honestly reflect the low finding count rather than padding with false positives?"
+      ]
+    }
+  ]
+}
