@@ -44,3 +44,15 @@ practices derived from timeless software engineering principles.
 - Update `README.md` whenever repository structure or workflows change.
 - Do not land changes that make `README.md` materially inaccurate.
 - Do not land changes to skills without checking `site/index.html` for accuracy.
+
+## Source-backed checks
+
+Use Bun and the tracked lockfile. Installation runs the package's `prepare` hook to configure `simple-git-hooks`; account for that local Git configuration effect before setup. `bun run evals:check` executes `scripts/validate-evals.mjs` and checks evaluation structure, while `bun run lint:md` runs Markdownlint. `lint:md:fix` rewrites files. There is no application build or unit-test script.
+
+A structural evaluation check does not establish model task performance. For changed skill behavior, inspect the associated examples/evaluation cases and distinguish static validation from an actual evaluated run. Preserve the existing `hone:` identifier, installation, README, site-card, schedule, and count synchronization requirements. The site is static; Wrangler deployment and installing skills into a user's agent configuration are separate effects that require their own task scope.
+
+## Completing work
+
+Carry the authorized change through the relevant checks and repair failures it causes. Make routine, reversible implementation choices using existing patterns; ask only when missing information, a material product decision, or an authorization boundary prevents the next step. Existing authorization remains valid within its scope. If blocked, name the exact action and missing prerequisite, retain concise evidence, and continue independent work.
+
+Choose verification proportional to the change. For instructions or prose, inspect changed paths, links, and local instruction precedence and run `git diff --check -- <changed-paths>`; don't install dependencies or run the application solely for a prose edit. For behavior changes, exercise the affected behavior and applicable checks below, then broaden only for failures or unresolved risk. Report files changed, checks actually run and their results, commands only inspected, and remaining limitations. A build or source inspection alone does not prove runtime behavior. Continue through already-authorized follow-through; stop at explicit review checkpoints or boundaries requiring new authorization.
